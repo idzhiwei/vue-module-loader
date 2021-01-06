@@ -31,5 +31,9 @@
   "devDependencies": {
     "rollup-plugin-terser": "^5.1.2",
     "vuepress": "^1.2.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
   }
 }

@@ -1,7 +1,7 @@
 export default {
   namespaced: true,
-  state: {
-    GLOBAL: {}
+  state() {
+    return { GLOBAL: {} }
   },
   mutations: {
     // 注册插槽组件

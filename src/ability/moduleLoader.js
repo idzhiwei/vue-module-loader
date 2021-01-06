@@ -1,5 +1,5 @@
 import { print } from '../tool/index'
-export default function(Vue) {
+export default function(app) {
   return function(moduleData) {
     if (typeof moduleData === 'object') {
       /** 通过模块清单加载模块 */
@@ -13,8 +13,8 @@ export default function(Vue) {
               script.onload = () => {
                 if (window[moduleName]) {
                   typeof window[moduleName] === 'function'
-                    ? window[moduleName].call(this, Vue)
-                    : window[moduleName].default.call(this, Vue)
+                    ? window[moduleName](app)
+                    : window[moduleName].default(app)
                   print(moduleName, '模块加载完毕')
                 } else {
                   console.warn(
@@ -36,7 +36,7 @@ export default function(Vue) {
       return Promise.all(promiseAll)
     } else if (typeof moduleData === 'function') {
       /** 通过模块函数加载模块 */
-      moduleData.call(this, Vue)
+      moduleData(app)
     } else {
       console.error('模块加载方法只接受模块列表对象或者模块函数对象作为参数。')
     }

@@ -225,30 +225,3 @@ this.$eventBus.on('EVENT_NAME', payloadData => {})
 ```javascript
 this.$eventBus.off('EVENT_NAME')
 ```
-
-## 发起异步请求
-
-根据业务接口发起异步请求获取数据，是前后端分离的系统最重要的功能之一。vue-module-loader 内部封装了强大易用的 http 网络请求库[axios](https://github.com/axios/axios)，并在实例化时赋化身为`$http`对象，我们使用`$http`发起请求就像使用 axios 一样，例如：
-
-```js
-this.$http
-  .get('api/path', {
-    params: {}
-  })
-  .then(data => {
-    console.log(data)
-  })
-```
-
-除了在 vue-module-loader 实例化时可以传入 http 配置，我们在使用实例方法`$http`时也可以随时修改请求配置，发起请求时传入的配置优先级大于实例化配置。
-
-```js
-this.$http
-  .get('api/path', {
-    params: {},
-    timeout: 5000 // 当前接口的超时时间就会延长至5000ms
-  })
-  .then(data => {
-    console.log(data)
-  })
-```
